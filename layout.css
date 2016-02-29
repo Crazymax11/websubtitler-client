@@ -1,0 +1,156 @@
+/* create file btn */
+
+.create-file-button{
+    background-color: #2196F3;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.round-button-circle {
+    /*padding-bottom: 100%;*/
+    border-radius: 50%;
+    /*border:10px solid #cfdcec;*/
+    overflow:hidden;
+}
+.round-button-circle:hover {
+    background:#1976D2;
+}
+
+
+/* base css styles */
+
+.file-template-element{
+    background-color: #03A9F4;
+    border: none;
+    overflow: overlay;
+}
+.info-container{
+	float: left;
+	width: 60%;
+}
+.controls-container{
+	float: right;
+	width: 40%;
+}
+.file-template-id-input{
+    margin: 10px;
+    width: 90%;
+}
+.file-template-name-input{
+	margin: 10px;
+	width: 90%;
+}
+.file-template-organization_id-input{
+    margin: 10px;
+    width: 90%;
+}
+.file-template-description-input{
+	margin: 10px;
+	width: 90%;
+}
+
+.file-template-edit-button{
+    background-color: #CDDC39; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    width: 90%;
+}
+.file-template-delete-button{
+	background-color: #F44336; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    width: 90%;
+}
+.file-template-save-button{
+	background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px;
+    width: 90%;
+}
+
+/* read additional classes*/
+
+.file-template-id-input-read{
+    display: none;
+}
+.file-template-name-input-read{
+}
+.file-template-organization_id-input-read{
+    display: none;
+}
+.file-template-description-input-read{
+}
+
+.file-template-edit-button-read{
+}
+.file-template-delete-button-read{
+}
+.file-template-save-button-read{
+    display: none;
+}
+
+/* update additional classes */
+
+.file-template-id-input-update{
+    display: none;
+}
+.file-template-name-input-update{
+}
+.file-template-organization_id-input-update{
+    display: none;
+}
+.file-template-description-input-update{
+}
+
+.file-template-edit-button-update{
+    display: none;
+}
+.file-template-delete-button-update{
+}
+.file-template-save-button-update{
+}
+
+/* create additional classes */
+
+.file-template-id-input-create{
+    display: none;
+}
+.file-template-name-input-create{
+}
+.file-template-organization_id-input-create{
+    display: none;
+}
+.file-template-description-input-create{
+}
+
+.file-template-edit-button-create{
+    display: none;
+}
+.file-template-delete-button-create{
+    display: none;
+}
+.file-template-save-button-create{
+}
