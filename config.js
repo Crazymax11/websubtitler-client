@@ -1,5 +1,5 @@
 credentials = {
-    username: 'testadmin',
-    password: 'testadmin'
+    username: undefined,
+    password: undefined
 	};
 siteRoot = "http://localhost:3000"

@@ -42,8 +42,6 @@ var fileView = Backbone.View.extend({
     this.render();
   },
   render: function(){
-    if (this.model.isNewIt === true)
-      this.state = "create";
     
     var that = this;
     // Compile the template using underscore

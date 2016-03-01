@@ -19,6 +19,11 @@
 
   <script src="./subtitles-model.js"></script>
 
+  <script src="./core.js"></script>
+
+  <div id="content-block"> </div>
+
+
   <script type="text/template" id="file-template">
     <div class="info-container"> 
       <input type="text" class="file-template-id-input" value="<%= id %>"/>
@@ -38,18 +43,24 @@
   <button id="create-file-button" class="create-file-button round-button-circle"> + </button>
   </div>
 
-
+  <script type="text/template" id="login-template">
+      <input type="text" class="login-template-login" value="<%= login %>"/>
+      <input type="passwords" class="login-template-password" value="<%= pass %>"/>
+      <button class="login-template-login-button"> Войти </button>
+  </script>
 
   <script>
   function ready() {
     console.log("DOM is ready");
-    fc = new fileCollectionView({collection: new fileCollection(), model: fileModel, el : $("#files-container")});
-    fc.collection.credentials = credentials;
-    fc.collection.fetch();
-    var createBtn = $("#create-file-button");
-    createBtn.click( function(){
-      fc.collection.create({credentials: credentials});
-    })
+    // fc = new fileCollectionView({collection: new fileCollection(), model: fileModel, el : $("#files-container")});
+    // fc.collection.credentials = credentials;
+    // fc.collection.fetch();
+    // var createBtn = $("#create-file-button");
+    // createBtn.click( function(){
+    //   fc.collection.create({credentials: credentials});
+    // })
+    app = new webSubtitlerApp();
+    app.router.navigate('login');
 
   }
 

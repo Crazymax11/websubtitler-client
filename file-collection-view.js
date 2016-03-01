@@ -12,7 +12,7 @@ var fileCollectionView = Backbone.View.extend({
       $(dv.el).empty();
     });
     this._fileViews = [];
-	this.collection.each(function(file) {
+    this.collection.each(function(file) {
       that._fileViews.push(new fileView({
         model : file
       }));
@@ -25,5 +25,11 @@ var fileCollectionView = Backbone.View.extend({
     	dv.render();
       $(that.el).append(dv.el);
     });
+  },
+  remove: function() {
+    this.undelegateEvents();
+    this.$el.empty();
+    this.stopListening();
+    return this;
   }
 });
