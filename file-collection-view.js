@@ -3,7 +3,9 @@ var fileCollectionView = Backbone.View.extend({
     var that = this;
     this.listenTo(this.collection, "change reset add remove", this.render);
   },
- 
+  events: {
+    "click .create-file-button": "createNewFile"
+  },
   render : function() {
   	//this.el = $(this.elName);
     var that = this;
@@ -27,11 +29,16 @@ var fileCollectionView = Backbone.View.extend({
       // не забудем слушать события от вьюх
       that.listenTo(dv, "subtitlesClicked", that.subtitlesClicked)
     });
-
+    if (that.$(".create-file-button").length == 0){
+      $(that.el).append("<button class=\"create-file-button round-button-circle\"> + </button>");
+    }
 
   },
   subtitlesClicked: function(file_id){
     this.trigger("subtitlesClicked", file_id);
+  },
+  createNewFile: function(){
+    this.collection.create({});
   },
   remove: function() {
     this.undelegateEvents();
