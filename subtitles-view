@@ -43,7 +43,7 @@ var fileView = Backbone.View.extend({
     this.render();
   },
   openSubtitles: function(){
-    this.trigger("subtitlesClicked", {file_id: this.model.id});
+    this.trigger("subtitlesClicked", {subtitles_model: this.model.subtitles});
   },
   render: function(){
     

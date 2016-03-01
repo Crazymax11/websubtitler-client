@@ -24,7 +24,14 @@ var fileCollectionView = Backbone.View.extend({
     _(this._fileViews).each(function(dv) {
     	dv.render();
       $(that.el).append(dv.el);
+      // не забудем слушать события от вьюх
+      that.listenTo(dv, "subtitlesClicked", that.subtitlesClicked)
     });
+
+
+  },
+  subtitlesClicked: function(file_id){
+    this.trigger("subtitlesClicked", file_id);
   },
   remove: function() {
     this.undelegateEvents();
