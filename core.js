@@ -38,7 +38,8 @@ var router = Backbone.Router.extend({
   routes: {
     "login":                "login",   // #login
     "files(/:file_id)":         "files",  // #files/file_id
-    "subtitles?file_id=:file_id" : "subtitlesForFile"
+    "subtitles?file_id=:file_id" : "subtitlesForFile",
+    "subtitles_lines/:subtitles_id" : "subtitlesLines"
   },
 
   login: function() {
@@ -58,6 +59,17 @@ var router = Backbone.Router.extend({
   	file_id = parseInt(file_id);
   	this.app.view.remove();
   	this.app.view = new subtitleCollectionView({collection: this.app.fc.findWhere({id: file_id}).subtitles, el : $("#content-block") });
+  	this.app.view.render();
+  	this.app.listenTo(this.app.view, "subtitlesClicked", this.app.showSubtitlesLines);
+  },
+  subtitlesLines: function(subtitles_id){
+  	subtitles_id = parseInt(subtitles_id);
+  	this.app.view.remove();
+  	this.app.view = new subtitleLineCollectionView({collection: new subtitlesLineCollection(), el : $("#content-block") });
+  	this.app.view.collection.credentials = {username: this.app.credentials.get("login"), password: this.app.credentials.get("pass")};
+  	this.app.view.collection.fetch({data: $.param({subtitles_id: subtitles_id})});
+  	this.app.view.collection.subtitles_id = subtitles_id;
+  	this.app.view.subtitles_id = subtitles_id;
   	this.app.view.render();
   }
 
@@ -83,4 +95,8 @@ function webSubtitlerApp(){
  		// this.fc.credentials = {username: that.credentials.get("login"), password: that.credentials.get("pass")};
  		// this.fc.fetch({success: function(){console.log('сукес'); that.router.navigate("#files", {trigger: true});}, error: function(){console.log('ерр')}});
 	};
+	this.showSubtitlesLines = function(id){
+		var that = this;
+		this.router.navigate('subtitles_lines/' + id, {trigger: true});
+	}
 }

@@ -80,7 +80,7 @@ var subtitleCollectionView = Backbone.View.extend({
       dv.render();
       $(that.el).append(dv.el);
       // не забудем слушать события от вьюх
-      //that.listenTo(dv, "subtitlesClicked", that.subtitlesClicked)
+      that.listenTo(dv, "subtitlesClicked", that.subtitlesClicked)
     });
     if (that.$(".subtitles-create-button").length == 0){
       $(that.el).append("<button class=\"subtitles-create-button\"> create new </button>");

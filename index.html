@@ -20,6 +20,9 @@
   <script src="./subtitles-model.js"></script>
   <script src="./subtitles-view.js"></script>
 
+  <script src="./subtitles-line-model.js"></script>
+  <script src="./subtitles-line-view.js"></script>
+
   <script src="./core.js"></script>
 
   <div id="content-block"> </div>
@@ -46,6 +49,14 @@
     <button class="subtitle-template-delete-button"> delete </button>
     <button class="subtitle-template-save-button"> save </button>
     <button class="subtitle-template-open-button"> open </button>
+  </script>
+
+
+  <script type="text/template" id="subtitle-line-template">
+    <input type="text" class="subtitle-line-template-text-input" value="<%= text %>"/>
+    <input type="text" class="subtitle-line-template-time-from-input" value="<%= time_from %>"/>
+    <input type="text" class="subtitle-line-template-time-to-input" value="<%= time_to %>"/>
+    <button class="subtitle-line-template-delete-button"> delete </button>
   </script>
 
 
