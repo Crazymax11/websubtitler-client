@@ -12,6 +12,7 @@
   <script src="http://backbonejs.ru/backbone-min.js" type="text/javascript"></script>
   <script src="./basic-auth.js" type="text/javascript"></script>
 
+  <script src="./my-time.js"></script>
   <script src="./config.js"></script>
   <script src="./file-model.js"></script>
   <script src="./file-view.js"></script>
@@ -35,6 +36,7 @@
       <input type="text" class="file-template-organization_id-input" value="<%= organization_id %>"/>
       <input type="text" class="file-template-description-input" value="<%= description %>"/>
       <button class="file-template-subtitles-button"> subtitles: "<%= subtitlesCount ? subtitlesCount : 0 %>"</button>
+      <input type="file" class="file-template-upload-file-input"/>
     </div>
     <div class="controls-container"> 
       <button class="file-template-edit-button"> edit </button>
@@ -69,13 +71,6 @@
   <script>
   function ready() {
     console.log("DOM is ready");
-    // fc = new fileCollectionView({collection: new fileCollection(), model: fileModel, el : $("#files-container")});
-    // fc.collection.credentials = credentials;
-    // fc.collection.fetch();
-    // var createBtn = $("#create-file-button");
-    // createBtn.click( function(){
-    //   fc.collection.create({credentials: credentials});
-    // })
     app = new webSubtitlerApp();
     app.router.navigate('login', {trigger: true});
 

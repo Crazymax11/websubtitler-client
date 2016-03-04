@@ -76,12 +76,24 @@ var subtitleLineCollectionView = Backbone.View.extend({
     if (that.$(".subtitles-line-create-button").length == 0){
       $(that.el).append("<button class=\"subtitles-line-create-button\"> create new </button>");
     }
-    
     return this;
   },
   createNewSubtitlesLine: function(){
     var that = this;
-    this.collection.create({subtitles_id: that.subtitles_id});
+    var last = this.collection.last();
+    var values = {};
+    if (last != undefined){
+      values.time_from = last.get("time_to");
+      var date = timeStringToDate(values.time_from);
+      date.setSeconds(date.getSeconds()+4);
+      values.time_to = dateToTimeString(date);
+    }
+    else{
+      values.time_from = "00:00:00";
+      values.time_to = "00:00:04";
+    }
+    values.subtitles_id = that.subtitles_id;
+    this.collection.create(values);
   },
   remove: function() {
     this.undelegateEvents();
