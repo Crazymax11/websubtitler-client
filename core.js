@@ -58,7 +58,11 @@ var router = Backbone.Router.extend({
   subtitlesForFile: function (file_id){
   	file_id = parseInt(file_id);
   	this.app.view.remove();
-  	this.app.view = new subtitleCollectionView({collection: this.app.fc.findWhere({id: file_id}).subtitles, el : $("#content-block") });
+  	var subtColl = new subtitlesCollection();
+	subtColl.file_id = file_id;
+	subtColl.credentials = {username: this.app.credentials.get("login"), password: this.app.credentials.get("pass")};
+  	this.app.view = new subtitleCollectionView({collection: subtColl, el : $("#content-block") });
+	subtColl.fetch();
   	this.app.view.render();
   	this.app.listenTo(this.app.view, "subtitlesClicked", this.app.showSubtitlesLines);
   },

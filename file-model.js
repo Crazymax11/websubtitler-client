@@ -11,7 +11,8 @@ var fileModel = Backbone.Model.extend({
         if (that.id!= undefined){
             this.subtitles = new subtitlesCollection();
             this.subtitles.credentials = this.collection.credentials;
-            this.subtitles.fetch({ data: $.param({ file_id: that.id})})
+            this.subtitles.fetch({ data: $.param({ file_id: that.id})});
+            this.subtitles.file_id = that.id;
             this.listenTo(this.subtitles, "change reset add remove", this.countSubtitles);
         }
     },

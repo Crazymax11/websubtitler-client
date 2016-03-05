@@ -15,11 +15,12 @@ var subtitleView = Backbone.View.extend({
     "click .subtitle-template-save-button": "updateData",
     "click .subtitle-template-edit-button": "changeStateToUpdate",
     "click .subtitle-template-delete-button": "deleteData",
-    "click .subtitle-template-open-button": "openSubtitles"
+    "click .subtitle-template-open-button": "openSubtitles",
+    "click .subtitle-template-save-as-srt-button": "saveToFile"
   },
   updateData: function() {
     var newName = this.$(".subtitle-template-name-input").val(); 
-    this.model.set({"name" : newName});
+    this.model.set({name : newName});
     this.model.save();//(method, this.model);
     this.state = "read";
   },
@@ -36,6 +37,10 @@ var subtitleView = Backbone.View.extend({
   openSubtitles: function(){
     console.log("open sub");
     this.trigger("subtitlesClicked", this.model.id);
+  },
+  saveToFile: function(){
+    var that = this;
+    $.ajax('subtitles/'+that.model.id+'/download', settings, settings);
   },
   render: function(){
     var that = this;
@@ -74,7 +79,6 @@ var subtitleCollectionView = Backbone.View.extend({
     });
     // Clear out this element.
     //$(this.el).empty();
- 
     // Render each sub-view and append it to the parent view's element.
     _(this._subtitlesViews).each(function(dv) {
       dv.render();
@@ -85,11 +89,10 @@ var subtitleCollectionView = Backbone.View.extend({
     if (that.$(".subtitles-create-button").length == 0){
       $(that.el).append("<button class=\"subtitles-create-button\"> create new </button>");
     }
-    
     return this;
   },
   createNewSubtitles: function(){
-    this.collection.create({file_id: parseInt(this.collection.at(0).get("file_id"))});
+    this.collection.createNew();
   },
   subtitlesClicked: function(id){
     this.trigger("subtitlesClicked", id);

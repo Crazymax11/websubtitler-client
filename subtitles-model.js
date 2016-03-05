@@ -12,5 +12,12 @@ var subtitlesModel = Backbone.Model.extend({
 
 var subtitlesCollection = Backbone.Collection.extend({
     model: subtitlesModel,
-    url: siteRoot + '/subtitles/'
+    url: siteRoot + '/subtitles/',
+    createNew: function(obj){
+        if (obj === undefined)
+            obj = {};
+        if (this.file_id)
+            obj.file_id = this.file_id;
+        this.create(obj);
+    }
 });

@@ -22,8 +22,7 @@ var fileView = Backbone.View.extend({
 
   updateData: function() {
     var newName = this.$(".file-template-name-input").val(); 
-    var newDescription = this.$(".file-template-description-input").val(); 
-    this.model.credentials = credentials;
+    var newDescription = this.$(".file-template-description-input").val();
     this.model.set({"name" : newName});
     this.model.set({"description" : newDescription});
     // update or create;
@@ -33,7 +32,6 @@ var fileView = Backbone.View.extend({
   },
   deleteData: function(){
     var that = this;
-    this.model.credentials = credentials;
     this.model.destroy({success: function(model, response) {
         that.remove();
     }});
