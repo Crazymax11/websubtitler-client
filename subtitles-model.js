@@ -19,5 +19,13 @@ var subtitlesCollection = Backbone.Collection.extend({
         if (this.file_id)
             obj.file_id = this.file_id;
         this.create(obj);
+    },
+    fetch: function(options) {
+        var that = this;
+        options = options || {};
+        //do specific pre-processing
+        //Call Backbone's fetch
+        options.data = {file_id: that.file_id};
+        return Backbone.Collection.prototype.fetch.call(this, options);
     }
 });
