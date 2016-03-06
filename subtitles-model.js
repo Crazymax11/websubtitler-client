@@ -7,7 +7,24 @@ var subtitlesModel = Backbone.Model.extend({
     initialize: function(){
     },
     //заменить
-    urlRoot: siteRoot + '/subtitles/'
+    urlRoot: siteRoot + '/subtitles/',
+    downloadSrt: function(){
+        var that = this;
+        var credentials = {};
+        if ("credentials" in this)
+            credentials = this.credentials;
+        else
+            credentials = this.collection.credentials;
+        $.ajax({
+            url: that.urlRoot + that.get("id") + '/download',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "
+                    + btoa(credentials.username + ":" + credentials.password));
+            },
+            success: function(data){that.trigger("srtIsReady", data)},
+            error: function() {console.log("err")}
+        });
+    }
 });
 
 var subtitlesCollection = Backbone.Collection.extend({

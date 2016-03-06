@@ -2,6 +2,7 @@ var subtitleView = Backbone.View.extend({
   initialize: function(){
       this.state = "read";
       this.render();
+      this.listenTo(this.model, "srtIsReady", this.saveSrt);
     },
   templateElements: [
   'subtitle-template-name-input',
@@ -16,7 +17,7 @@ var subtitleView = Backbone.View.extend({
     "click .subtitle-template-edit-button": "changeStateToUpdate",
     "click .subtitle-template-delete-button": "deleteData",
     "click .subtitle-template-open-button": "openSubtitles",
-    "click .subtitle-template-save-as-srt-button": "saveToFile"
+    "click .subtitle-template-save-as-srt-button": "downloadSrt"
   },
   updateData: function() {
     var newName = this.$(".subtitle-template-name-input").val(); 
@@ -38,9 +39,13 @@ var subtitleView = Backbone.View.extend({
     console.log("open sub");
     this.trigger("subtitlesClicked", this.model.id);
   },
-  saveToFile: function(){
+  downloadSrt: function(){
+    this.model.downloadSrt();
+  },
+  saveSrt: function(data){
     var that = this;
-    $.ajax('subtitles/'+that.model.id+'/download', settings, settings);
+    var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.model.name + ".srt");
   },
   render: function(){
     var that = this;
