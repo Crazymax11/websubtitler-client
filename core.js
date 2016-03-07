@@ -39,7 +39,7 @@ var router = Backbone.Router.extend({
     "login":                "login",   // #login
     "files(/:file_id)":         "files",  // #files/file_id
     "subtitles?file_id=:file_id" : "subtitlesForFile",
-    "subtitles_lines/:subtitles_id" : "subtitlesLines"
+    "subtitles_lines?subtitles_id=:subtitles_id" : "subtitlesLines"
   },
 
   login: function() {
@@ -101,6 +101,6 @@ function webSubtitlerApp(){
 	};
 	this.showSubtitlesLines = function(id){
 		var that = this;
-		this.router.navigate('subtitles_lines/' + id, {trigger: true});
+		this.router.navigate('subtitles_lines?subtitles_id=' + id, {trigger: true});
 	}
 }
